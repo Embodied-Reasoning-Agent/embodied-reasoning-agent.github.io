@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents</title>
+  <title>ERA: Transforming VLMs into Embodied Agents via Embodied Prior Learning and Online Reinforcement Learning</title>
 
   <!-- Favicon -->
   <link rel="icon" href="website/img/embodied-logo.png" type="image/png">
@@ -114,53 +114,63 @@
 
             <!-- MAIN TITLE (logo + "EmbodiedBench:") -->
             <h1 class="title is-1 publication-title is-bold">
-              <img src="website/img/embodied-logo.png"
-                   alt="logo"
-                   style="vertical-align: middle; margin-right: 20px; position: relative; top: -15px; left: 30px"
-                   width="80"
-                   height="80" />
-              <span class="embodiedbench" style="vertical-align: middle">EmbodiedBench</span>
+              <span class="embodiedbench" style="vertical-align: middle">ERA</span>
             </h1>
 
             <!-- SUBTITLE -->
             <h2 class="title is-1 publication-title is-bold" style="margin-top:-0.7em; margin-right: 30px; margin-left: 30px;">
-              Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents
+              Transforming VLMs into Embodied Agents via Embodied Prior Learning and Online Reinforcement Learning
             </h2>
 
-            <!-- Author list -->
+            
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://yangrui2015.github.io/" target="_blank">Rui Yang</a><sup>1*</sup>,
+                <a href="https://openreview.net/profile?id=~Hanyang_Chen3" target="_blank">Hanyang Chen</a><sup>1†</sup>,
               </span>
               <span class="author-block">
-                <a href="https://openreview.net/profile?id=~Hanyang_Chen3" target="_blank">Hanyang Chen</a><sup>1*</sup>,
+                <a href="https://www.linkedin.com/in/markzihaozhao/" target="_blank">Mark Zhao</a><sup>2†</sup>,
               </span>
               <span class="author-block">
-                <a href="https://jyzhang1208.github.io/" target="_blank">Junyu Zhang</a><sup>1*</sup>,
+                <a href="https://yangrui2015.github.io/" target="_blank">Rui Yang</a><sup>1†</sup>,
               </span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/markzihaozhao/" target="_blank">Mark Zhao</a><sup>3*</sup>,
+                Qinwei Ma<sup>4</sup>,
+              </span>
+              <span class="author-block">
+                Ke Yang<sup>1</sup>,
               </span><br>
               <span class="author-block">
-                <a href="https://qiancheng0.github.io/">Cheng Qian</a><sup>1</sup>,
+                Jiarui Yao<sup>1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://jameskrw.github.io/">Kangrui Wang</a><sup>2</sup>,
+                <a href="https://jameskrw.github.io/">Kangrui Wang</a><sup>3</sup>,
               </span>
               <span class="author-block">
-                <a href="https://qinengwang-aiden.github.io/">Qineng Wang</a><sup>2</sup>,
+                Hao Bai<sup>1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/teja-koripella/">Teja Venkat Koripella</a><sup>1</sup>,
+                Zhenhailong Wang<sup>1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/marziyeh-movahedi-439b7284/" target="_blank">Marziyeh Movahedi</a><sup>4</sup>,
+                Rui Pan<sup>1</sup>,
               </span><br>
               <span class="author-block">
-                <a href="https://limanling.github.io/">Manling Li</a><sup>2</sup>,
+                Mengchao Zhang<sup>5</sup>,
+              </span>
+              <span class="author-block">
+                Jose Barreiros<sup>5</sup>,
+              </span>
+              <span class="author-block">
+                Aykut Onol<sup>5</sup>,
+              </span>
+              <span class="author-block">
+                ChengXiang Zhai<sup>1</sup>,
               </span>
               <span class="author-block">
                 <a href="https://blender.cs.illinois.edu/hengji.html">Heng Ji</a><sup>1</sup>,
+              </span><br>
+              <span class="author-block">
+                <a href="https://limanling.github.io/">Manling Li</a><sup>3</sup>,
               </span>
               <span class="author-block">
                 <a href="https://www.huan-zhang.com/">Huan Zhang</a><sup>1</sup>,
@@ -170,20 +180,18 @@
               </span>
             </div>
             <div class="is-size-5 publication-authors" style="margin-top:1em;">
-              <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
-              <span class="author-block"><sup>2</sup>Northwestern University,</span>
-              <span class="author-block"><sup>3</sup>University of Toronto,</span>
-              <span class="author-block"><sup>4</sup>Toyota Technological Institute at Chicago</span>
+              <span class="author-block"><sup>1</sup>UIUC,</span>
+              <span class="author-block"><sup>2</sup>University of Toronto,</span>
+              <span class="author-block"><sup>3</sup>Northwestern University,</span>
+              <span class="author-block"><sup>4</sup>Tsinghua University,</span>
+              <span class="author-block"><sup>5</sup>Toyota Research Institute</span>
             </div>
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>*</sup>Equal contribution</span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block" style="color:rgb(192, 54, 54);"><b>ICML 2025 Oral</b></span>
+              <span class="author-block"><sup>†</sup>Equal contribution</span>
             </div>
 
             <!-- Links -->
-            <div class="column has-text-centered" style="margin-top:1.5em;">
+            <!-- <div class="column has-text-centered" style="margin-top:1.5em;">
               <span class="link-block">
                 <a href="http://arxiv.org/abs/2502.09560" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -209,7 +217,7 @@
                   <span>Dataset</span>
                 </a>
               </span>
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -228,51 +236,6 @@
       </div>
     </div>
   </section> -->
-
-  <!-- Short videos (Goal Interpretation, etc.) -->
-  <section class="section" style="padding-top:0.5rem;">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <!-- <h3 class="title is-5">Goal Interpretation</h3> -->
-          <video autoplay muted loop playsinline controls width="100%">
-            <source src="https://github.com/EmbodiedBench/embodiedbench.github.io/raw/main/website/videos/example_success_mani.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="column">
-          <!-- <h3 class="title is-5">Subgoal Decomposition</h3> -->
-          <video autoplay muted loop playsinline controls width="100%">
-            <source src="https://github.com/EmbodiedBench/embodiedbench.github.io/raw/main/website/videos/example_success_nav.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:1em; color:rgb(99, 95, 95); margin-top:0.7rem; margin-bottom:1rem; line-height: 1.55; font-size: 1.2rem;">
-        <b><span style="color: rgb(53, 131, 53); font-size: 1.2rem;">Successful</span> Examples in EmbodiedBench powered by GPT-4o: EB-Manipulation (left) and EB-Navigation (right).</b> 
-      </p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0rem;">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <!-- <h3 class="title is-5">Goal Interpretation</h3> -->
-          <video autoplay muted loop playsinline controls width="100%">
-            <source src="https://github.com/EmbodiedBench/embodiedbench.github.io/raw/main/website/videos/example_failure_mani.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="column">
-          <!-- <h3 class="title is-5">Subgoal Decomposition</h3> -->
-          <video autoplay muted loop playsinline controls width="100%">
-            <source src="https://github.com/EmbodiedBench/embodiedbench.github.io/raw/main/website/videos/example_failure_nav.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:1em; color:rgb(99, 95, 95); margin-top:0.7rem; margin-bottom:1rem; line-height: 1.55; font-size: 1.2rem;">
-        <b><span style="color: rgb(187, 75, 62); font-size: 1.2rem;">Failure</span> Examples in EmbodiedBench powered by GPT-4o: EB-Manipulation (left) and EB-Navigation (right).</b> 
-      </p>
-    </div>
-  </section>
 
   <!-- Single-Paragraph Abstract Section -->
   <!-- <section class="section" id="abstract">
@@ -310,14 +273,30 @@
       <br>
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          We introduce <b>EmbodiedBench</b>, a comprehensive benchmark designed to evaluate <b>Multi-modal Large Language Models (MLLMs) as embodied agents</b>. 
-          While existing benchmarks have primarily focused on Large Language Models (LLMs) and high-level tasks, EmbodiedBench takes a leap forward by offering a comprehensive, 
-          fine-grained evaluation of MLLM-based agents across both <b>high-level and low-level tasks</b>, as well as <b>six critical agent capabilities</b>.
+          Recent advances in <b>embodied AI</b> highlight the potential of <b>vision language models (VLMs)</b> as agents
+          capable of perception, reasoning, and interaction in complex environments. However, top-performing
+          systems rely on large-scale models that are costly to deploy, while smaller VLMs lack the necessary
+          knowledge and skills to succeed. To bridge this gap, we present <b>Embodied Reasoning Agent (ERA)</b>, a
+          <b>two-stage framework</b> that integrates <b>prior knowledge learning</b> and <b>online reinforcement learning (RL)</b>.
+          The first stage, <b>Embodied Prior Learning</b>, distills foundational knowledge from three types of data: (1)
+          <b>Trajectory-Augmented Priors</b>, which enrich existing trajectory data with structured reasoning generated
+          by stronger models; (2) <b>Environment-Anchored Priors</b>, which provide in-environment knowledge and
+          grounding supervision; and (3) <b>External Knowledge Priors</b>, which transfer general knowledge from out-of-
+          environment datasets. In the second stage, we develop an <b>online RL pipeline</b> that builds on these priors
+          to further enhance agent performance. To overcome the inherent challenges in agent RL, including long
+          horizons, sparse rewards, and training instability, we introduce <b>three key designs</b>: <b>self-summarization</b> for
+          context management, <b>dense reward shaping</b>, and <b>turn-level policy optimization</b>. Extensive experiments on
+          both <b>high-level planning (EB-ALFRED)</b> and <b>low-level control (EB-Manipulation)</b> tasks demonstrate that
+          <b>ERA-3B surpasses both prompting-based large models and previous training-based baselines</b>. Specifically,
+          it achieves <b>overall improvements of 8.4% on EB-ALFRED and 19.4% on EB-Manipulation over GPT-4o</b>,
+          and exhibits <b>strong generalization to unseen tasks</b>. Detailed Ablation studies further validate the
+          effectiveness of different prior datasets and agent RL designs. Overall, ERA offers a practical path toward
+          scalable embodied intelligence, providing methodological insights for future embodied AI systems.
         </p>
-        <p style="text-align:justify; color:rgb(31, 30, 30);">
+        <!-- <p style="text-align:justify; color:rgb(31, 30, 30);">
           EmbodiedBench is more than just a benchmark-it's a <b>multifaceted, 
           standardized evaluation platform</b> that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied intelligence.
-        </p>
+        </p> -->
       </div>
 
       <!-- Figure 1 -->
