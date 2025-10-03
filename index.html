@@ -269,7 +269,7 @@
   <!-- Overview Section -->
   <section class="section" id="overview" style="padding-top:1.5rem;">
     <div class="container" style="max-width: 80%; margin: 0 auto;">
-      <h2 class="title is-3" style="text-align:center; margin-bottom:1rem; font-size: 2.3em;">Overview</h2>
+      <h2 class="title is-3" style="text-align:center; margin-bottom:1rem; font-size: 2.3em;">Overview of ERA</h2>
       <br>
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
@@ -303,39 +303,82 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-eight-fifths">
           <figure class="table-figure">
-            <img class="figure-image" src="website/img/framework_overview.png" alt="Figure 1. Overview of EMBODIEDBENCH." style="max-width: 95%; text-align:center; margin-bottom:1rem;"/>
+            <img class="figure-image" src="website/img/framework_overview.png" alt="Figure 1. Overview of ERA." style="max-width: 95%; text-align:center; margin-bottom:1rem;"/>
             <figcaption class="figure-caption" style="font-size: 1.1em;">
-              <b>Figure 1.</b> Overview of EmbodiedBench. Two key features of our benchmark: various action levels and capability-oriented evaluation.
+              <b>Figure 1.</b> (a) Overview of the ERA framework: Embodied Prior Learning (EPL) finetunes on diverse data sources to provide foundational knowledge, and online RL further improves the agent. (b) ERA (i.e, EPL+RL) boosts a 3B base model to surpass GPT-4o on hold-out evaluation sets.
             </figcaption>
           </figure>
 
-          <p style="text-align:justify; color:rgb(31, 30, 30); margin-top:1rem; margin-bottom:1rem; line-height: 1.55; max-width: 95%; margin: 0 auto; font-size: 1.2em;">
+          <!-- <p style="text-align:justify; color:rgb(31, 30, 30); margin-top:1rem; margin-bottom:1rem; line-height: 1.55; max-width: 95%; margin: 0 auto; font-size: 1.2em;">
             EmbodiedBench is designed with two key features that set it apart from existing benchmarks:
             <b>1. Diverse tasks with hierarchical action levels.</b> Among the four environments, <b>EB-ALFRED</b> and <b>EB-Habitat</b> focus on high-level task decomposition and planning (e.g., <i>"put a book on the desk"</i> ), 
             while <b>EB-Navigation</b> and <b>EB-Manipulation</b> demand planning with low-level actions (e.g., <i>translational/rotational control</i> ) and require precise perception and spatial reasoning. 
             <b>2. Capability-oriented evaluation.</b> Unlike previous benchmarks that primarily emphasize overall accuracy or module-specific performance, 
             EmbodiedBench introduces a fine-grained evaluation framework that assesses six critical capabilities of embodied agents, including <b>basic task solving</b>, <b>commonsense reasoning</b>, <b>complex instruction understanding</b>, <b>spatial awareness</b>, <b>visual perception</b>, and <b>long-horizon planning</b>. 
-          </p>
+          </p> -->
         </div>
       </div>
 
       <!-- Figure 2 -->
       <br>
       <br>
-      <h2 class="title is-3" style="text-align:center; margin-bottom: 2.5rem; font-size: 2.3em;">Agent Pipeline</h2>
+      <h2 class="title is-3" style="text-align:center; margin-bottom: 2.5rem; font-size: 2.3em;">Overview of Embodied Prior Learning</h2>
       <div class="columns is-centered has-text-centered" style="margin-top:2em;">
         <div class="column is-eight-fifths">
           <figure class="table-figure">
-            <img class="figure-image" src="website/img/planner_pipeline.png" alt="Figure 2. Vision-driven agent pipeline used in EMBODIEDBENCH." style="max-width: 98%; margin: 0 auto; margin-bottom:1rem;" />
+            <img class="figure-image" src="website/img/EPL.png" alt="Figure 2. Illustration of Embodied Prior Learning (EPL)." style="max-width: 98%; margin: 0 auto; margin-bottom:1rem;" />
             <figcaption class="figure-caption" style="font-size: 1.1em;">
-              <b>Figure 2.</b> Vision-driven agent pipeline used in EmbodiedBench.
+              <b>Figure 2.</b> Illustration of Embodied Prior Learning (EPL). EPL leverages three data sources: Augmented trajectory priors, environment-anchored priors, and external knowledge priors.
             </figcaption>
           </figure>
 
-          <p style="text-align:justify; margin-top:1em;  margin-bottom:1rem; line-height: 1.55; max-width: 95%; font-size: 1.2em; margin: 0 auto; color:rgb(31, 30, 30);">
+          <!-- <p style="text-align:justify; margin-top:1em;  margin-bottom:1rem; line-height: 1.55; max-width: 95%; font-size: 1.2em; margin: 0 auto; color:rgb(31, 30, 30);">
             To evaluate MLLMs as agents in EmbodiedBench, we design a unified embodied agent pipeline, illustrated in Figure 2. 
             This pipeline provides a robust framework for processing multimodal inputs, reasoning through interactions, and generating structured, executable plans composed of sequential actions.
-          </p>
+          </p> -->
+        </div>
+      </div>
+
+      <!-- Figure 3 -->
+      <br>
+      <br>
+      <h2 class="title is-3" style="text-align:center; margin-bottom: 2.5rem; font-size: 2.3em;">Agent & online RL framework</h2>
+      <div class="columns is-centered has-text-centered" style="margin-top:2em;">
+        <div class="column is-eight-fifths">
+          <figure class="table-figure">
+            <img class="figure-image" src="website/img/online_RL.png" alt="Figure 3. (a) Our agent framework, and (b) a comparison of turn-level GAE and token-level GAE." style="max-width: 98%; margin: 0 auto; margin-bottom:1rem;" />
+            <figcaption class="figure-caption" style="font-size: 1.1em;">
+              <b>Figure 3.</b> (a) Our agent framework, and (b) a comparison of turn-level GAE and token-level GAE.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Figure 4 -->
+      <br>
+      <br>
+      <div class="columns is-centered has-text-centered" style="margin-top:2em;">
+        <div class="column is-eight-fifths">
+          <figure class="table-figure">
+            <img class="figure-image" src="website/img/correlation.png" alt="Figure 4" style="max-width: 98%; margin: 0 auto; margin-bottom:1rem;" />
+            <figcaption class="figure-caption" style="font-size: 1.1em;">
+              <b>Figure 4.</b> Correlation between EPL and ERA(EPL+RL) on EB-ALFRED and EB-Manipulation (Both Seen and Unseen Task).
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Figure 5 -->
+      <br>
+      <br>
+      <div class="columns is-centered has-text-centered" style="margin-top:2em;">
+        <div class="column is-eight-fifths">
+          <figure class="table-figure">
+            <img class="figure-image" src="website/img/RL_ablation.png" alt="Figure 5" style="max-width: 98%; margin: 0 auto; margin-bottom:1rem;" />
+            <figcaption class="figure-caption" style="font-size: 1.1em;">
+              <b>Figure 5.</b> (a)(b) Reward design ablations and (c)(d) Value estimation method comparisons, both on EB-ALFRED and EB-Manipulation.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -425,33 +468,17 @@
         <div id="results-carousel" class="carousel results-carousel" style="margin-bottom: 2rem;">
             <div class="box mx-auto my-4" style="max-width: 90%;">
               <div class="content has-text-centered" style="margin-bottom: 2rem;">
-                <img src="website/img/success_alfred_claude.png" alt="" width="75%"/>
+                <img src="website/img/case_study_2.png" alt="" width="75%"/>
                 <p class="image-subtitle" style="font-size: 1.1em; margin-top: 1rem;">
-                  <b>Figure 4.</b> Planning example of Claude-3.5-Sonnet in EB-ALFRED.
+                  <b>Figure 6.</b> Planning example of EPL only and ERA (EPL + RL) in EB-Manipulation.
                 </p>
               </div>
             </div>
             <div class="box mx-auto my-4" style="max-width: 90%;">
               <div class="content has-text-centered" style="margin-bottom: 2rem;">
-                <img src="website/img/success_habitat_internvl.png" alt="" width="75%"/>
+                <img src="website/img/case_study_4.png" alt="" width="75%"/>
                 <p class="image-subtitle" style="font-size: 1.1em; margin-top: 1rem;">
-                  <b>Figure 5.</b> Planning example in EB-Habitat for InternVL2.5-78B.
-                </p>
-              </div>
-            </div>
-            <div class="box mx-auto my-4" style="max-width: 90%;">
-              <div class="content has-text-centered" style="margin-bottom: 2rem;">
-                <img src="website/img/success_nav_gpt4o.png" alt="" width="75%" />
-                <p class="image-subtitle" style="font-size: 1.1em; margin-top: 1rem;">
-                  <b>Figure 6.</b> Planning example of GPT-4o in EB-Navigation.
-                </p>
-              </div>
-            </div>
-            <div class="box mx-auto my-4" style="max-width: 90%;">
-              <div class="content has-text-centered" style="margin-bottom: 2rem;">
-                <img src="website/img/success_mani_gemini.png" alt="" width="75%" />
-                <p class="image-subtitle" style="font-size: 1.1em; margin-top: 1rem;">
-                  <b>Figure 7.</b> Planning example of Gemini-1.5-pro in EB-Manipulation.
+                  <b>Figure 7.</b> Planning example of EPL only and ERA (EPL + RL) in EB-ALFRED.
                 </p>
               </div>
             </div>
@@ -463,27 +490,17 @@
         <div id="results-carousel" class="carousel results-carousel" data-autoplay="true" data-pagination="false">
           <div class="box mx-auto my-4" style="max-width: 90%;">
             <div class="content has-text-centered" style="margin-bottom: 2rem;">
-              <img src="website/img/planning_error_alfred.png" alt="" width="70%"/>
+              <img src="website/img/case_study_1.png" alt="" width="70%"/>
               <p class="image-subtitle" style="font-size: 1.1em; margin-top: 2rem; max-width: 70%; margin: auto;">
-                <b>Figure 8.</b> Planning Error Example in EB-ALFRED: The agent was supposed to locate "Book_2" by the 7th action but instead continued
-                interacting with the first book.
+                <b>Figure 8.</b> Reflection Error Example in EB-Manipulation. ERA successfully identified the correct target object: the azure triangular prism, while EPL mistakenly selected the yellow cube.
               </p>
             </div>
           </div>
           <div class="box mx-auto my-4" style="max-width: 90%;">
             <div class="content has-text-centered" style="margin-bottom: 2rem;">
-              <img src="website/img/perception_error_mani.png" alt="" width="70%" style="margin-bottom: 1rem;"/>
-              <p class="image-subtitle" style="font-size: 1.1em; max-width: 70%; margin: auto;">
-                <b>Figure 9.</b> Perception Error Example in EB-Manipulation: the agent erroneously observed the color of the object.
-              </p>
-            </div>
-          </div>
-          <div class="box mx-auto my-4" style="max-width: 90%;">
-            <div class="content has-text-centered" style="margin-bottom: 2rem;">
-              <img src="website/img/reasoning_error_nav.png" alt="" width="70%"  style="margin-bottom: 1rem;"/>
-              <p class="image-subtitle" style="font-size: 1.1em; max-width: 70%; margin: auto;">
-                <b>Figure 10.</b> Reasoning Error Example in EB-Navigation: the agent recognized it was blocked by the countertop but failed to attempt
-                navigating around it.
+              <img src="website/img/case_study_3.png" alt="" width="70%"/>
+              <p class="image-subtitle" style="font-size: 1.1em; margin-top: 2rem; max-width: 70%; margin: auto;">
+                <b>Figure 9.</b> Planning Error Example in EB-ALFRED. ERA successfully identified the second spray bottle as SprayBottle 2 while EPL repeatedly located the same SprayBottle.
               </p>
             </div>
           </div>
