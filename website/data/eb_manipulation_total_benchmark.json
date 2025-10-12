@@ -214,6 +214,51 @@
     "eb_mani_complex": 20.8,
     "eb_mani_visual": 19.4,
     "eb_mani_long": 18.8
+  },
+  {
+    "model": "RL4VLM (3B)",
+    "eb_mani_avg": 21.9,
+    "eb_mani_base": 33.3,
+    "eb_mani_common": 8.3,
+    "eb_mani_complex": 29.2,
+    "eb_mani_visual": 30.6,
+    "eb_mani_spatial": 8.3
+  },
+  {
+    "model": "VAGEN (3B)",
+    "eb_mani_avg": 22.9,
+    "eb_mani_base": 35.4,
+    "eb_mani_common": 8.3,
+    "eb_mani_complex": 31.3,
+    "eb_mani_visual": 29.2,
+    "eb_mani_spatial": 10.4
+  },
+  {
+    "model": "Robot-R1 (7B)",
+    "eb_mani_avg": 11.7,
+    "eb_mani_base": 12.5,
+    "eb_mani_common": 8.3,
+    "eb_mani_complex": 6.3,
+    "eb_mani_visual": 16.7,
+    "eb_mani_spatial": 14.6
+  },
+  {
+    "model": "ERA-3B (EPL-only)",
+    "eb_mani_avg": 40.0,
+    "eb_mani_base": 45.8,
+    "eb_mani_common": 37.5,
+    "eb_mani_complex": 41.7,
+    "eb_mani_visual": 47.9,
+    "eb_mani_spatial": 27.1
+  },
+  {
+    "model": "ERA-3B (EPL+RL)",
+    "eb_mani_avg": 48.3,
+    "eb_mani_base": 56.3,
+    "eb_mani_common": 47.9,
+    "eb_mani_complex": 47.9,
+    "eb_mani_visual": 50.0,
+    "eb_mani_spatial": 39.6
   }
 ]
 

@@ -1,328 +1,130 @@
-
-//Formatter to generate charts
+// ===== Mini-chart formatter (optional helper) =====
 var chartFormatter = function (cell, formatterParams, onRendered) {
     var content = document.createElement("span");
     var values = cell.getValue();
 
-    //invert values if needed
-    if (formatterParams.invert) {
+    // invert values if needed
+    if (formatterParams && formatterParams.invert) {
         values = values.map(val => val * -1);
     }
 
-    //add values to chart and style
-    content.classList.add(formatterParams.type);
-    content.inneHrTML = values.join(",");
+    // add values to chart and style
+    content.classList.add(formatterParams?.type || "line");
+    // peity expects CSV text content
+    content.textContent = values.join(",");
 
-    //setup chart options
+    // setup chart options
     var options = {
         width: 50,
         // min: 0.0,
         // max: 100.0,
+    };
+    if (formatterParams && formatterParams.fill) {
+        options.fill = formatterParams.fill;
     }
 
-    if (formatterParams.fill) {
-        options.fill = formatterParams.fill
-    }
-
-    //instantiate piety chart after the cell element has been aded to the DOM
+    // instantiate peity chart after the cell element has been added to the DOM
     onRendered(function () {
-        peity(content, formatterParams.type, options);
+        try {
+            // If using jQuery peity, you likely need: $(content).peity(formatterParams.type, options)
+            peity(content, formatterParams?.type || "line", options);
+        } catch (e) {
+            // swallow if peity isn't available; table still renders
+            console.warn("Peity not available:", e);
+        }
     });
 
     return content;
 };
 
-var colorFormatterGoalInt = function (cell, formatterParams) {
-    var value = cell.getValue();
+// ===== Shared gradient cell formatters =====
+function makeColorFormatter(defaultEndColor) {
+    return function (cell, formatterParams) {
+        var value = cell.getValue();
 
-    // Check for the specific string "-"
-    if (value === "-") {
-        return value;
-    }
+        // Pass-through for explicit "-"
+        if (value === "-") return value;
 
-    // Default values
-    var defaults = {
-        min: 0.0,
-        max: 100.0,
-        startColor: { r: 255, g: 255, b: 255 },
-        endColor: { r: 238, g: 211, b: 217 }
+        // Defaults
+        var defaults = {
+            min: 0.0,
+            max: 100.0,
+            startColor: { r: 255, g: 255, b: 255 },
+            endColor: defaultEndColor
+        };
+
+        // Override with provided params
+        var min = (formatterParams && formatterParams.min) ?? defaults.min;
+        var max = (formatterParams && formatterParams.max) ?? defaults.max;
+        var startColor = (formatterParams && formatterParams.startColor) || defaults.startColor;
+        var endColor = (formatterParams && formatterParams.endColor) || defaults.endColor;
+
+        // Clamp then normalize to [0,1]
+        var num = Number(value);
+        if (Number.isNaN(num)) return value;
+        num = Math.max(min, Math.min(max, num));
+        var normalized = (num - min) / Math.max(1e-9, (max - min));
+
+        // Interpolate color
+        var red   = Math.floor(startColor.r + (endColor.r - startColor.r) * normalized);
+        var green = Math.floor(startColor.g + (endColor.g - startColor.g) * normalized);
+        var blue  = Math.floor(startColor.b + (endColor.b - startColor.b) * normalized);
+
+        // Round to 1 decimal place for display
+        var shown = num.toFixed(1);
+
+        return "<span style='display:block;width:100%;height:100%;font-size:1.0em;background-color:rgb(" +
+               red + "," + green + "," + blue + ");'>" + shown + "</span>";
     };
-
-    // Override defaults with provided formatterParams values
-    var min = (formatterParams && formatterParams.min) || defaults.min;
-    var max = (formatterParams && formatterParams.max) || defaults.max;
-    var startColor = (formatterParams && formatterParams.startColor) || defaults.startColor;
-    var endColor = (formatterParams && formatterParams.endColor) || defaults.endColor;
-
-    // Normalize the value between 0 and 1
-    var normalizedValue = (value - min) / (max - min);
-
-    // Compute the color gradient 
-    var red = Math.floor(startColor.r + (endColor.r - startColor.r) * normalizedValue);
-    var green = Math.floor(startColor.g + (endColor.g - startColor.g) * normalizedValue);
-    var blue = Math.floor(startColor.b + (endColor.b - startColor.b) * normalizedValue);
-
-    // make sure the value is rounded to 1 decimal place
-    value = parseFloat(value).toFixed(1)
-
-    return "<span style='display: block; width: 100%; height: 100%; font-size: 1.0em; background-color: rgb(" + red + ", " + green + ", " + blue + ");'>" + value + "</span>";
 }
 
-var colorFormatterSubgoal = function (cell, formatterParams) {
-    var value = cell.getValue();
+var colorFormatterGoalInt  = makeColorFormatter({ r: 238, g: 211, b: 217 }); // pinkish
+var colorFormatterSubgoal  = makeColorFormatter({ r: 245, g: 232, b: 221 }); // beige
+var colorFormatterActionSeq= makeColorFormatter({ r: 204, g: 211, b: 202 }); // green-gray
+var colorFormatterTrans    = makeColorFormatter({ r: 181, g: 192, b: 208 }); // blue-gray
 
-    // Check for the specific string "-"
-    if (value === "-") {
-        return value;
-    }
-
-    // Default values
-    var defaults = {
-        min: 0.0,
-        max: 100.0,
-        startColor: { r: 255, g: 255, b: 255 },
-        endColor: { r: 245, g: 232, b: 221 }
-    };
-
-    // Override defaults with provided formatterParams values
-    var min = (formatterParams && formatterParams.min) || defaults.min;
-    var max = (formatterParams && formatterParams.max) || defaults.max;
-    var startColor = (formatterParams && formatterParams.startColor) || defaults.startColor;
-    var endColor = (formatterParams && formatterParams.endColor) || defaults.endColor;
-
-    // Normalize the value between 0 and 1
-    var normalizedValue = (value - min) / (max - min);
-
-    // Compute the color gradient 
-    var red = Math.floor(startColor.r + (endColor.r - startColor.r) * normalizedValue);
-    var green = Math.floor(startColor.g + (endColor.g - startColor.g) * normalizedValue);
-    var blue = Math.floor(startColor.b + (endColor.b - startColor.b) * normalizedValue);
-
-    // make sure the value is rounded to 1 decimal place
-    value = parseFloat(value).toFixed(1)
-
-    return "<span style='display: block; width: 100%; height: 100%; font-size: 1.0em; background-color: rgb(" + red + ", " + green + ", " + blue + ");'>" + value + "</span>";
-}
-
-var colorFormatterActionSeq = function (cell, formatterParams) {
-    var value = cell.getValue();
-
-    // Check for the specific string "-"
-    if (value === "-") {
-        return value;
-    }
-
-    // Default values
-    var defaults = {
-        min: 0.0,
-        max: 100.0,
-        startColor: { r: 255, g: 255, b: 255 },
-        endColor: { r: 204, g: 211, b: 202 }
-    };
-
-    // Override defaults with provided formatterParams values
-    var min = (formatterParams && formatterParams.min) || defaults.min;
-    var max = (formatterParams && formatterParams.max) || defaults.max;
-    var startColor = (formatterParams && formatterParams.startColor) || defaults.startColor;
-    var endColor = (formatterParams && formatterParams.endColor) || defaults.endColor;
-
-    // Normalize the value between 0 and 1
-    var normalizedValue = (value - min) / (max - min);
-
-    // Compute the color gradient 
-    var red = Math.floor(startColor.r + (endColor.r - startColor.r) * normalizedValue);
-    var green = Math.floor(startColor.g + (endColor.g - startColor.g) * normalizedValue);
-    var blue = Math.floor(startColor.b + (endColor.b - startColor.b) * normalizedValue);
-
-    // make sure the value is rounded to 1 decimal place
-    value = parseFloat(value).toFixed(1)
-
-    return "<span style='display: block; width: 100%; height: 100%; font-size: 1.0em; background-color: rgb(" + red + ", " + green + ", " + blue + ");'>" + value + "</span>";
-}
-
-var colorFormatterTrans = function (cell, formatterParams) {
-    var value = cell.getValue();
-
-    // Check for the specific string "-"
-    if (value === "-") {
-        return value;
-    }
-
-    // Default values
-    var defaults = {
-        min: 0.0,
-        max: 100.0,
-        startColor: { r: 255, g: 255, b: 255 },
-        endColor: { r: 181, g: 192, b: 208 }
-    };
-
-    // Override defaults with provided formatterParams values
-    var min = (formatterParams && formatterParams.min) || defaults.min;
-    var max = (formatterParams && formatterParams.max) || defaults.max;
-    var startColor = (formatterParams && formatterParams.startColor) || defaults.startColor;
-    var endColor = (formatterParams && formatterParams.endColor) || defaults.endColor;
-
-    // Normalize the value between 0 and 1
-    var normalizedValue = (value - min) / (max - min);
-
-    // Compute the color gradient 
-    var red = Math.floor(startColor.r + (endColor.r - startColor.r) * normalizedValue);
-    var green = Math.floor(startColor.g + (endColor.g - startColor.g) * normalizedValue);
-    var blue = Math.floor(startColor.b + (endColor.b - startColor.b) * normalizedValue);
-
-    // make sure the value is rounded to 1 decimal place
-    value = parseFloat(value).toFixed(1)
-
-    return "<span style='display: block; width: 100%; height: 100%; font-size: 1.0em; background-color: rgb(" + red + ", " + green + ", " + blue + ");'>" + value + "</span>";
-}
-
-
-
+// ===== Progress bar color function (used by Tabulator "progress" formatter) =====
 var barColorFn = function (value, formatterParams) {
     var defaults = {
-        range : [-50, 50],
-        low: { r: 255, g: 255, b: 255 },
+        range: [-50, 50],
+        low:  { r: 255, g: 255, b: 255 },
         high: { r: 206, g: 212, b: 218 }
     };
 
-    // Override defaults with provided formatterParams values
+    // Safely read custom params
+    var p = formatterParams || {};
+    var low_range  = (p.range && typeof p.range[0] === "number") ? p.range[0] : defaults.range[0];
+    var high_range = (p.range && typeof p.range[1] === "number") ? p.range[1] : defaults.range[1];
+    var low  = p.low  || defaults.low;
+    var high = p.high || defaults.high;
 
-    var low_range = (formatterParams && formatterParams.range[0]) || defaults.range[0];
-    var high_range = (formatterParams && formatterParams.range[1]) || defaults.range[1];
-    var low = (formatterParams && formatterParams.low) || defaults.low;
-    var high = (formatterParams && formatterParams.high) || defaults.high;
+    // Clamp
+    var v = Math.max(low_range, Math.min(high_range, Number(value)));
+    var range = Math.max(1e-9, (high_range - low_range));
 
-    // Clamp the value to the range [-100, 100]
-    value = Math.max(low_range, Math.min(high_range, value));
-    var range = high_range - low_range;
+    // Correct normalization across arbitrary ranges
+    var t = (v - low_range) / range;
 
-    // Normalize the value to the range [0, 1]
-    var normalizedValue = (value + range / 2) / range;
-    // Interpolate between the two colors based on the normalized value
-    var interpolated = {
-        r: Math.floor(low.r + (high.r - low.r) * normalizedValue),
-        g: Math.floor(low.g + (high.g - low.g) * normalizedValue),
-        b: Math.floor(low.b + (high.b - low.b) * normalizedValue)
-    };
+    var r = Math.floor(low.r  + (high.r  - low.r)  * t);
+    var g = Math.floor(low.g  + (high.g  - low.g)  * t);
+    var b = Math.floor(low.b  + (high.b  - low.b)  * t);
 
-    return 'rgba(' + interpolated.r + ',' + interpolated.g + ',' + interpolated.b + ',0.9)';
-}
+    return 'rgba(' + r + ',' + g + ',' + b + ',0.9)';
+};
 
+// ===== Page init: only EB-Manipulation =====
 document.addEventListener('DOMContentLoaded', function () {
-    Promise.all([
-        fetch('website/data/eb_navigation_total_benchmark.json').then(response => response.json()),
-        fetch('website/data/eb_manipulation_total_benchmark.json').then(response => response.json()),
-    ])
-        .then(([
-            eb_navigation_total_benchmark_data,
-            eb_manipulation_total_benchmark_data,
-        ]) => {
+    fetch('website/data/eb_manipulation_total_benchmark.json')
+        .then(response => response.json())
+        .then((eb_manipulation_total_benchmark_data) => {
             var getColumnMinMax = (data, field) => {
-                let values = data.map(item => item[field]).filter(val => val !== "-").map(Number);
+                let values = data
+                    .map(item => item[field])
+                    .filter(val => val !== "-" && val !== null && val !== undefined && !Number.isNaN(Number(val)))
+                    .map(Number);
+                if (!values.length) return { min: 0, max: 100 };
                 return { min: Math.min(...values), max: Math.max(...values) };
             };
-
-            var eb_navigation_columns = [
-                {
-                    title: "Model",
-                    field: "model",
-                    cssClass: "avg-column",
-                    widthGrow: 1.5,
-                    minWidth: 180,
-                    headerSort: true 
-                },
-                {
-                    title: "Avg<br>Perf.",
-                    field: "eb_nav_avg",
-                    cssClass: "avg-column",
-                    formatter: "progress",
-                    minWidth: 90,
-                    formatterParams: {
-                        min: 0,
-                        max: 100,
-                        legend: true,
-                        color: barColorFn
-                    }
-                },
-                {
-                    title: "Base",
-                    field: "eb_nav_base",
-                    cssClass: "avg-column",
-                    hozAlign: "center",
-                    minWidth: 90,
-                    headerSort: true,
-                    formatter: colorFormatterSubgoal
-                },
-                {
-                    title: "Common",
-                    field: "eb_nav_common",
-                    cssClass: "avg-column",
-                    hozAlign: "center",
-                    minWidth: 90,
-                    headerSort: true,
-                    formatter: colorFormatterActionSeq
-                },
-                {
-                    title: "Complex",
-                    field: "eb_nav_complex",
-                    cssClass: "avg-column",
-                    hozAlign: "center",
-                    minWidth: 90,
-                    headerSort: true,
-                    formatter: colorFormatterTrans
-                },
-                {
-                    title: "Visual",
-                    field: "eb_nav_visual",
-                    cssClass: "avg-column",
-                    hozAlign: "center",
-                    minWidth: 90,
-                    headerSort: true,
-                    formatter: colorFormatterGoalInt
-                },
-                {
-                    title: "Long",
-                    field: "eb_nav_long",
-                    cssClass: "avg-column",
-                    hozAlign: "center",
-                    minWidth: 90,
-                    headerSort: true,
-                    formatter: colorFormatterSubgoal
-                }
-            ];
-
-            eb_navigation_columns.forEach(column => {
-                if (column.columns) {
-                    column.columns.forEach(subColumn => {
-                        let { min, max } = getColumnMinMax(eb_navigation_total_benchmark_data, subColumn.field);
-                        subColumn.formatterParams = { min, max };
-                    });
-                } else if (column.field !== "eb_nav_avg") {
-                    let { min, max } = getColumnMinMax(eb_navigation_total_benchmark_data, column.field);
-                    column.formatterParams = { min, max };
-                }
-            });
-
-            var eb_navigation_table = new Tabulator("#eb-navigation-benchmark-main-table", {
-                data: eb_navigation_total_benchmark_data,
-                layout: "fitColumns",
-                responsiveLayout: "collapse",
-                responsiveLayoutCollapseStartOpen: false,
-                movableColumns: false,
-                initialSort: [
-                    { column: "eb_nav_avg", dir: "desc" },
-                ],
-                columnDefaults: {
-                    tooltip: true,
-                },
-                // columns: eb_navigation_columns
-                columns: eb_navigation_columns.map(column => {
-                    if (column.field === "eb_nav_avg") {
-                        return { ...column, sorter: "number" };
-                    }
-                    return column;
-                })
-            });
 
             var eb_manipulation_columns = [
                 {
@@ -340,10 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     formatter: "progress",
                     minWidth: 90,
                     formatterParams: {
-                        min: -2, max: 80,
+                        min: 0,               // use 0–100 for consistency
+                        max: 100,
                         legend: true,
                         color: barColorFn,
                     },
+                    sorter: "number"
                 },
                 {
                     title: "Base",
@@ -392,38 +196,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             ];
 
+            // Inject per-column min/max for smooth gradients
             eb_manipulation_columns.forEach(column => {
-                if (column.columns) {
-                    column.columns.forEach(subColumn => {
-                        let { min, max } = getColumnMinMax(eb_manipulation_total_benchmark_data, subColumn.field);
-                        subColumn.formatterParams = { min, max };
-                    });
-                } else if (column.field !== "eb_mani_avg") {
+                if (column.field && column.field !== "eb_mani_avg") {
                     let { min, max } = getColumnMinMax(eb_manipulation_total_benchmark_data, column.field);
-                    column.formatterParams = { min, max };
+                    column.formatterParams = Object.assign({ min, max }, column.formatterParams || {});
                 }
             });
 
+            // Build the table
             var eb_manipulation_table = new Tabulator("#eb-manipulation-benchmark-main-table", {
                 data: eb_manipulation_total_benchmark_data,
                 layout: "fitColumns",
                 responsiveLayout: "collapse",
                 responsiveLayoutCollapseStartOpen: false,
                 movableColumns: false,
-                initialSort: [
-                    { column: "eb_mani_avg", dir: "desc" },
-                ],
-                columnDefaults: {
-                    tooltip: true,
-                },
-                // columns: eb_manipulation_columns
-                columns: eb_manipulation_columns.map(column => {
-                    if (column.field === "eb_mani_avg") {
-                        return { ...column, sorter: "number" };
-                    }
-                    return column;
-                })
+                initialSort: [{ column: "eb_mani_avg", dir: "desc" }],
+                columnDefaults: { tooltip: true },
+                columns: eb_manipulation_columns
             });
         });
-})
-
+});
