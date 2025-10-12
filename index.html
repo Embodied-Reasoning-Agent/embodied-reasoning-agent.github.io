@@ -302,25 +302,7 @@
           systems rely on large-scale models that are costly to deploy, while smaller VLMs lack the necessary
           knowledge and skills to succeed. To bridge this gap, we present <b>Embodied Reasoning Agent (ERA)</b>, a
           <b>two-stage framework</b> that integrates <b>prior knowledge learning</b> and <b>online reinforcement learning (RL)</b>.
-          The first stage, <b>Embodied Prior Learning</b>, distills foundational knowledge from three types of data: (1)
-          <b>Trajectory-Augmented Priors</b>, which enrich existing trajectory data with structured reasoning generated
-          by stronger models; (2) <b>Environment-Anchored Priors</b>, which provide in-environment knowledge and
-          grounding supervision; and (3) <b>External Knowledge Priors</b>, which transfer general knowledge from out-of-
-          environment datasets. In the second stage, we develop an <b>online RL pipeline</b> that builds on these priors
-          to further enhance agent performance. To overcome the inherent challenges in agent RL, including long
-          horizons, sparse rewards, and training instability, we introduce <b>three key designs</b>: <b>self-summarization</b> for
-          context management, <b>dense reward shaping</b>, and <b>turn-level policy optimization</b>. Extensive experiments on
-          both <b>high-level planning (EB-ALFRED)</b> and <b>low-level control (EB-Manipulation)</b> tasks demonstrate that
-          <b>ERA-3B surpasses both prompting-based large models and previous training-based baselines</b>. Specifically,
-          it achieves <b>overall improvements of 8.4% on EB-ALFRED and 19.4% on EB-Manipulation over GPT-4o</b>,
-          and exhibits <b>strong generalization to unseen tasks</b>. Detailed Ablation studies further validate the
-          effectiveness of different prior datasets and agent RL designs. Overall, ERA offers a practical path toward
-          scalable embodied intelligence, providing methodological insights for future embodied AI systems.
         </p>
-        <!-- <p style="text-align:justify; color:rgb(31, 30, 30);">
-          EmbodiedBench is more than just a benchmark-it's a <b>multifaceted, 
-          standardized evaluation platform</b> that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied intelligence.
-        </p> -->
       </div>
 
       <!-- Figure 2 -->
@@ -342,6 +324,15 @@
           </p> -->
         </div>
       </div>
+      <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
+        <p style="text-align:justify; color:rgb(31, 30, 30);">
+          The first stage, <b>Embodied Prior Learning</b>, distills foundational knowledge from three types of data: (1)
+          <b>Trajectory-Augmented Priors</b>, which enrich existing trajectory data with structured reasoning generated
+          by stronger models; (2) <b>Environment-Anchored Priors</b>, which provide in-environment knowledge and
+          grounding supervision; and (3) <b>External Knowledge Priors</b>, which transfer general knowledge from out-of-
+          environment datasets.
+        </p>
+      </div>
 
       <!-- Figure 3 -->
       <br>
@@ -357,6 +348,14 @@
           </figure>
         </div>
       </div>
+      <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
+        <p style="text-align:justify; color:rgb(31, 30, 30);">
+          In the second stage, we develop an <b>online RL pipeline</b> that builds on these priors
+          to further enhance agent performance. To overcome the inherent challenges in agent RL, including long
+          horizons, sparse rewards, and training instability, we introduce <b>three key designs</b>: <b>self-summarization</b> for
+          context management, <b>dense reward shaping</b>, and <b>turn-level policy optimization</b>.
+        </p>
+      </div>
     </div>
   </section>
   <section class="section" id="overview" style="padding-top:4rem;">
@@ -369,24 +368,6 @@
         <img class="figure-image" src="website/img/leaderboard.png" alt="Figure 3. Error Analysis." />
       </figure>
       <br>
-      <div class="content has-text-justified" style="max-width: 95%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
-        <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Overall Results.</b> ERA achieves <b>65.2%</b> on <b>EB-ALFRED</b> and <b>48.3%</b> on <b>EB-Manipulation</b>, 
-          outperforming VAGEN by up to <b>25.4%</b> and surpassing GPT-4o by large margins. 
-          Despite being a compact <b>3B-parameter model</b>, ERA remains competitive with large proprietary systems such as Claude-3.5-Sonnet.
-        </p>
-
-        <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Unseen Task Generalization.</b> ERA demonstrates strong generalization to unseen subsets (e.g., achieving 
-          <b>66%</b> on the <b>Spatial</b> subset compared to <b>28%</b> for VAGEN), indicating robust, transferable reasoning rather than overfitting to training tasks.
-        </p>
-
-        <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Benefits of EPL and RL.</b> The <b>Embodied Prior Learning (EPL)</b> stage provides a strong foundation, while adding <b>online RL</b>
-          yields substantial gains (+9.2 on EB-ALFRED and +8.3 on EB-Manipulation), particularly on unseen tasks. 
-          These findings confirm that EPL imparts essential prior knowledge, while RL effectively refines the policy for stronger generalization.
-        </p>
-      </div>
       <br>
       <figure class="table-figure" style="margin-top:1em; max-width: 90%; margin: 0 auto;">
         <figcaption class="figure-caption" style="text-align: center; font-size: 1.1em;">
@@ -400,18 +381,13 @@
       <br>
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Trajectory-Augmented Priors Achieve the Largest Individual Gains in Generalization.</b>
-          They deliver the strongest improvements on unseen tasks, achieving up to <b>+13.0%</b> on EB-ALFRED and <b>+13.6%</b> on EB-Manipulation, underscoring the importance of structured reasoning for transfer to novel environments.
+          <b>(1) Trajectory-Augmented Priors Achieve the Largest Individual Gains in Generalization.</b>
         </p>
-
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Environment-Anchored Priors Improve Seen and Unseen Tasks Equally, While External Knowledge Priors Favor Unseen Tasks.</b>
-          Environment-Anchored data provide consistent gains across subsets, while External Knowledge Priors contribute more to unseen generalization by transferring broad reasoning and grounding skills.
+          <b>(2) Environment-Anchored Priors Improve Seen and Unseen Tasks Equally, While External Knowledge Priors Favor Unseen Tasks.</b>
         </p>
-
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Combining Trajectory-Augmented and Environment-Anchored Priors Elicits the Best Performance.</b>
-          Their combination achieves the highest results: <b>+24%</b> on EB-ALFRED and <b>+21.9%</b> on EB-Manipulation, highlighting their complementary strengths and the value of integrating structured and environment-grounded priors.
+          <b>(3) Combining Trajectory-Augmented and Environment-Anchored Priors Elicits the Best Performance.</b>
         </p>
       </div>
       <!-- Figure 4 -->
@@ -428,17 +404,13 @@
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
 
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Synergistic Dense Reward Improves Long-Horizon RL.</b>
-          Combining sparse success-based rewards with subgoal-based and behavior-shaping signals substantially enhances performance, 
-          yielding a <b>+14%</b> gain on <b>EB-ALFRED</b> and <b>+2.1%</b> on <b>EB-Manipulation</b>, confirming that dense rewards are especially vital 
-          for long-horizon tasks by improving exploration and credit assignment stability.
+          <b>(1) Synergistic Dense Reward Improves Long-Horizon RL.</b>
         </p>
 
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          <b>Turn-Level Value Estimation Enhances Policy Learning.</b>
-          Compared to token-level and bi-level methods, turn-level GAE achieves the highest gains: <b>+12%</b> on EB-ALFRED and <b>+8.4%</b> on EB-Manipulation by treating each response as a unified action, 
-          enabling more stable and effective policy optimization through consistent turn-level credit assignment.
+          <b>(2) Turn-Level Value Estimation Enhances Policy Learning.</b>
         </p>
+
 
       </div>
 
