@@ -297,12 +297,16 @@
       
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
-          Recent advances in <b>embodied AI</b> highlight the potential of <b>vision language models (VLMs)</b> as agents
-          capable of perception, reasoning, and interaction in complex environments. However, top-performing
-          systems rely on large-scale models that are costly to deploy, while smaller VLMs lack the necessary
-          knowledge and skills to succeed. To bridge this gap, we present <b>Embodied Reasoning Agent (ERA)</b>, a
-          <b>two-stage framework</b> that integrates <b>prior knowledge learning</b> and <b>online reinforcement learning (RL)</b>.
-        </p>
+          We introduce the <b>Embodied Reasoning Agent (ERA)</b>, a framework that transforms a compact 
+          <b>Vision Language Model (VLM)</b> into a performant and efficient embodied agent. Unlike prior 
+          methods that are tailored for <b>either</b> high-level planning or low-level control 
+          <b>in isolation</b>, ERA studies level-agnostic problems: 
+          <b>1. What prior knowledge does embodied agent require before RL and 2 What make RL in long-horizon embodied task stable and effective?</b> 
+          We distill them into a <b>unified post-training regime</b> that is capable of delivering 
+          <b>both</b> high-level planning agent and low-level control agent, by different curation 
+          of training data. This comprehensive approach not only solves level-specific tasks but also 
+          paves the way for future hierarchical policies and thus, more general embodied intelligence.
+        </p>        
       </div>
 
       <!-- Figure 2 -->
