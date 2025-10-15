@@ -119,7 +119,7 @@
                    style="vertical-align: middle; margin-right: 20px; position: relative; top: -15px; left: 30px"
                    width="80"
                    height="80" />
-              <span class="era" style="vertical-align: middle; color: #0072B2;">ERA:</span>
+              <span class="era" style="vertical-align: middle; color: #0072B2;">ERA</span>
             </h1> 
 
             <!-- SUBTITLE -->
@@ -306,9 +306,7 @@
       <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
           We introduce the <b>Embodied Reasoning Agent (ERA)</b>, a framework that transforms a compact 
-          <b>Vision Language Model (VLM)</b> into a performant and efficient embodied agent. Unlike prior 
-          methods that are tailored for <b>either</b> high-level planning or low-level control 
-          <b>in isolation</b>, ERA studies level-agnostic problems: 
+          <b>Vision Language Model (VLM)</b> into a performant and efficient embodied agent. In this work, we study: 
           <b>1. What prior knowledge does embodied agent require before RL</b> and <b>2 What make RL in long-horizon embodied task stable and effective?</b> 
           We distill them into a <b>unified post-training regime</b> that is capable of delivering 
           <b>both</b> high-level planning agent and low-level control agent, by different curation 
@@ -333,7 +331,7 @@
 
       <div style="height:2em;"></div>
 
-      <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
+      <!-- <div class="content has-text-justified" style="max-width: 95%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
           We build ERA with the aim of a general approach where we first 
           1. Infuse <b>foundational capabilities</b> into the model, which is categorized into <b>three kinds of embodied prior knowledge</b>, and then 
@@ -341,7 +339,7 @@
           ERA empowers a 3B model to surpass <b>all existing training-based models</b> with equal or larger size, and improve upon proprietary models like <b>GPT-4o</b> by <b>8.4</b> and <b>19.4</b> points, 
           respectively on high-level and low-level tasks on a comprehensive evaluation platform, <b>EmbodiedBench</b>, offering an effective step towards building scalable and generalizable embodied intelligence.
         </p>        
-      </div>
+      </div> -->
 
       <br>
       <br>
@@ -423,15 +421,33 @@
   <section class="section" id="overview" style="padding-top:4rem;">
       <div class="container" style="max-width: 95%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
         <h2 class="title is-3" style="text-align:center; margin-bottom: 2.8rem; font-size: 2.3em;">Experiments</h2>
-      <figure class="table-figure" style="margin-top:1em; max-width: 90%; margin: 0 auto;">
+
+      <div style="height:1em;"></div>
+
+      <!-- Main Results -->
+      <div class="content has-text-justified" style="max-width: 80%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
+        <p style="text-align:justify; color:rgb(31, 30, 30);">
+          ERA empowers a 3B model to surpass <b>all existing training-based models</b> with equal or larger size, and improve upon <b>proprietary models like GPT-4o</b> by <b>8.4</b> and <b>19.4</b> points, 
+          respectively on high-level and low-level tasks on a comprehensive evaluation platform, <b>EmbodiedBench</b>. Importantly, it demonstrates <b>strong generalization capabilities across absolutely unseen tasks</b>(Spatial and Common-Sense).
+        </p>        
+      </div>
+
+      <div style="height:1em;"></div>
+
+      <!-- Main Results Table -->
+      <figure class="table-figure" style="margin-top:1em; max-width: 80%; margin: 0 auto;">
         <figcaption class="figure-caption" style="text-align: center; font-size: 1.1em;">
           Table&nbsp;1. Task success rates on the five subsets of EB-ALFRED and EB-Manipulation. The best result in each column is highlighted in bold. &ldquo;Base&rdquo;, &ldquo;Complex&rdquo; and &ldquo;Visual&rdquo; are seen subsets, while &ldquo;Common&rdquo; and &ldquo;Spatial&rdquo; are unseen subsets.
         </figcaption>
         <img class="figure-image" src="website/img/leaderboard.png" alt="Figure 3. Error Analysis." />
       </figure>
+
+
       <br>
       <br>
-      <figure class="table-figure" style="margin-top:1em; max-width: 90%; margin: 0 auto;">
+
+      <!-- EPL Ablation Table -->
+      <figure class="table-figure" style="margin-top:1em; max-width: 80%; margin: 0 auto;">
         <figcaption class="figure-caption" style="text-align: center; font-size: 1.1em;">
           Table&nbsp;2. Ablation results on different prior datasets. We report average success rates on both seen and unseen splits.
           &ldquo;Traj-Aug&ldquo;, &ldquo;Env-Anc&ldquo;, and &ldquo;Ext-Know&ldquo; denotes Trajectory-Augmented, Environment-Anchored, and External
@@ -441,7 +457,9 @@
         <img class="figure-image" src="website/img/epl_ablation.png" alt="Figure 3. Error Analysis." /> 
       </figure>
       <br>
-      <div class="content has-text-justified" style="max-width: 95%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
+
+
+      <div class="content has-text-justified" style="max-width: 80%; font-size: 1.0em; margin: 0 auto; line-height: 1.55;">
         <p style="text-align:justify; color:rgb(31, 30, 30);">
           <b>(1) Trajectory-Augmented Priors Achieve the Largest Individual Gains in Generalization.</b>
         </p>
@@ -452,7 +470,10 @@
           <b>(3) Combining Trajectory-Augmented and Environment-Anchored Priors Elicits the Best Performance.</b>
         </p>
       </div>
-      <!-- Figure 4 -->
+
+
+
+      <!-- Figure 4
       <div class="columns is-centered has-text-centered" style="margin-top:2em;">
         <div class="column is-eight-fifths">
           <figure class="table-figure">
@@ -474,7 +495,7 @@
         </p>
 
 
-      </div>
+      </div> -->
 
 
       <!-- Figure 5 -->
@@ -553,9 +574,9 @@
                 </p>
               </div>
             </div>
-        </div>
+        </div>-->
 
-        <!-- Failure Carousel -->
+
         <br>
         <!-- <h3 class="title is-4" style="text-align:center; margin-top: 2rem; margin-bottom:-0.1rem; font-size: 1.7em;">Failure Examples</h3> --> -->
         <div id="results-carousel" class="carousel results-carousel" data-autoplay="true" data-pagination="false">
