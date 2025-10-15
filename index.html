@@ -221,9 +221,9 @@
             </div>
 
             <!-- Links -->
-            <!-- <div class="column has-text-centered" style="margin-top:1.5em;">
+            <div class="column has-text-centered" style="margin-top:1.5em;">
               <span class="link-block">
-                <a href="http://arxiv.org/abs/2502.09560" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2510.12693" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
@@ -231,7 +231,7 @@
                 </a>&nbsp;&nbsp;
               </span>
               <span class="link-block">
-                <a href="https://github.com/EmbodiedBench/EmbodiedBench" class="external-link button is-normal is-rounded is-dark" role="button" target="_blank">
+                <a href="https://github.com/Embodied-Reasoning-Agent/Embodied-Reasoning-Agent" class="external-link button is-normal is-rounded is-dark" role="button" target="_blank">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
@@ -239,7 +239,7 @@
                 </a> &nbsp;&nbsp;
               </span>
               <span class="link-block">
-                <a href="https://huggingface.co/EmbodiedBench"
+                <a href="https://huggingface.co/EmbodiedReasoningAgent"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon" style="display: flex; align-items: center; height: 100%;">
                       <p style="font-size:18px; margin: 0;">🤗</p>
@@ -247,7 +247,7 @@
                   <span>Dataset</span>
                 </a>
               </span>
-            </div> -->
+            </div>
 
           </div>
         </div>
@@ -555,6 +555,23 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3" style="text-align:center; margin-bottom:1rem; font-size: 2.3em;">Case Study</h2>
       <br>
+
+      <div style="height:2em;"></div>
+
+      <div class="content has-text-justified" style="max-width: 80%; font-size: 1.2em; margin: 0 auto; line-height: 1.55;">
+        <p style="text-align:justify; color:rgb(31, 30, 30);">
+          Below demonstrates an example: After training with ERA framework, a 3B model that originally fails on all tasks, can now perform step-by-step reasoning and actions to accomplish very challenging task: (a) on EB-ALFRED, it identifies and
+          reflects on earlier errors to finally place a plate onto a specific spot on the table; (b) on EB-Manipulation, it accurately places the star into the correct slot of the shape sorter.
+        </p>       
+      </div>
+
+      <div style="height:1em;"></div>
+
+      <figure class="table-figure" style="margin-top:1em; max-width: 80%; margin: 0 auto;">
+        <figcaption class="figure-caption" style="text-align: center; font-size: 1.1em;">
+        </figcaption>
+        <img class="figure-image" src="website/img/main-case.png" alt="Figure 3. Error Analysis." /> 
+      </figure>
       <!-- Success Carousel
         <h3 class="title is-4" style="text-align:center; margin-bottom:-0.1rem; font-size: 1.7em;">Success Examples</h3>
         <div id="results-carousel" class="carousel results-carousel" style="margin-bottom: 2rem;">
@@ -579,10 +596,10 @@
 
         <br>
         <!-- <h3 class="title is-4" style="text-align:center; margin-top: 2rem; margin-bottom:-0.1rem; font-size: 1.7em;">Failure Examples</h3> --> -->
-        <div id="results-carousel" class="carousel results-carousel" data-autoplay="true" data-pagination="false">
+        <!-- <div id="results-carousel" class="carousel results-carousel" data-autoplay="true" data-pagination="false">
           <div class="box mx-auto my-4" style="max-width: 90%;">
             <div class="content has-text-centered" style="margin-bottom: 2rem;">
-              <img src="website/img/case_study (1) (1)-2.png" alt="" width="70%"/>
+              <img src="website/img/main-case.png" alt="" width="70%"/>
               <p class="image-subtitle" style="font-size: 1.1em; margin-top: 2rem; max-width: 70%; margin: auto;">
                 <b>Figure 8.</b> Reflection Error Example in EB-Manipulation. ERA successfully identified the correct target object: the azure triangular prism, while EPL mistakenly selected the yellow cube.
               </p>
@@ -596,7 +613,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
     </div>
   </section>
 
